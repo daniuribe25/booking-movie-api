@@ -22,3 +22,5 @@ group :development, :test do
   gem 'rspec'
   gem 'rubocop', '~> 0.77'
 end
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
