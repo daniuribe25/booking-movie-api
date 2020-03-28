@@ -3,7 +3,7 @@ namespace :db do
   
     Sequel.extension :migration
   
-    DB = Sequel.connect("postgres://bookingmovies:Paxwork1!@localhost:4321/booking_movies?encoding=utf8&max_connections=4")
+    DB = Sequel.connect(ENV['DATABASE_URL'])
   
     desc "Prints current schema version"
   

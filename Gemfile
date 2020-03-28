@@ -24,5 +24,6 @@ group :development, :test do
   gem 'rubocop', '~> 0.77'
 end
 
-gem "sequel"
-gem "byebug", "~> 11.1", :groups => [:development, :test]
+gem 'sequel'
+gem 'byebug', "~> 11.1", :groups => [:development, :test]
+gem 'dotenv'

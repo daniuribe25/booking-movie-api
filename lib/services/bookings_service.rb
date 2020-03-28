@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'logger'
 require 'models'
 require_relative '../../api/entities/api_error'
 

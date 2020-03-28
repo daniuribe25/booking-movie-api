@@ -3,7 +3,7 @@
 require 'rake'
 require 'sequel'
 
-Sequel::Model.db = Sequel.connect("postgres://bookingmovies:Paxwork1!@localhost:4321/booking_movies?encoding=utf8&max_connections=4")
+Sequel::Model.db = Sequel.connect(ENV['DATABASE_URL'])
 
 require File.expand_path('config/application', __dir__)
 
