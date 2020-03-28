@@ -12,23 +12,39 @@
 
 # adept it to your needs
 
-## Your awesome API
+## Booking Movies API
 
-A [Grape](http://github.com/ruby-grape/grape) API mounted on [Rack](https://github.com/rack/rack), starting point for API development with Grape. It also includes [grape-swagger](http://github.com/ruby-grape/grape-swagger) for documentation generating.
-
+An awesome API used to create movies and book specific dater for each movie.
+It is built with Grape Gem to make it easier to implement api routing and and input validations, using Sequel as database query toolkit
 
 ## Usage
 
-All following commands can and should be adapted/replaced to your needs.
+To run it locally you will need the last version of Ruby, then follow these steps:
 
+- [Get Project](#get)
 - [Setup](#setup)
 - [Test](#test)
 - [Run](#run)
 - [Update](#update)
 - [Stop](#stop)
 
+#### `Get Project`
+
+First clone the project and access the folder
+```
+git clone https://github.com/daniuribe25/booking-movie-api.git
+
+cd booking-movie-api
+```
+
 #### `Setup`
 
+Run:
+```
+bundle install
+```
+
+Create a new PG Database 
 ```
 CREATE USER bookingmovies WITH PASSWORD 'Paxwork1!';
 CREATE DATABASE booking_movies WITH ENCODING 'UTF8';
@@ -36,14 +52,29 @@ GRANT ALL PRIVILEGES ON DATABASE booking_movies TO bookingmovies
 $ ./script/setup
 ```
 
+Migrate Database by running
+```
+rake db:migrate
+```
+if you encountered any issue comment in model's content like
+```
+class Movie
+  # < Sequel::Model
+  # one_to_many :movie_dates
+end
+```
+then run the migration again
+
 #### `Test`
 
+Running tests
 ```
 $ ./script/test
 ```
 
 #### `Run`
 
+Running local server
 ```
 $ ./script/server *port (default: 9292)
 ```
@@ -69,11 +100,6 @@ $ ./script/update
 $ ./script/stop
 ```
 
-## Rake Tasks
-
-- [List Routes](#list-routes)
-- [OpenApi Documentation and Validation](#openapi-documentation-and-validation)
-
 #### List Routes
 
 ```
@@ -88,16 +114,6 @@ rake oapi:validate
 ```
 comming from: [`grape-swagger` Rake Tasks](https://github.com/ruby-grape/grape-swagger#rake-tasks)
 
-## Docker
-
-- build: `docker build -t awesome_api .`
-- run: `docker run -it -p 9292:9292 --rm awesome_api`
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/name/repo.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](LICENSE).
+Bug reports and pull requests are welcome on GitHub at https://github.com/daniuribe25/booking-movie-api.git.
