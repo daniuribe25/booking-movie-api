@@ -3,7 +3,6 @@
 module Api
   module Endpoints
     class Movies < Grape::API
-      extend Models
 
       namespace :movies do
 

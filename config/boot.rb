@@ -28,7 +28,3 @@ end
 Dir[File.expand_path('../api/endpoints/*.rb', __dir__)].sort.each do |endpoint|
   require endpoint
 end
-
-Dir[File.expand_path('../lib/services/*.rb', __dir__)].sort.each do |endpoint|
-  require endpoint
-end

@@ -2,6 +2,7 @@
 
 require 'rake'
 require 'sequel'
+require 'dotenv/load'
 
 Sequel::Model.db = Sequel.connect(ENV['DATABASE_URL'])
 

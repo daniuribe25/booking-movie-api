@@ -1,5 +1,6 @@
 namespace :db do
     require "sequel"
+    require 'dotenv/load'
   
     Sequel.extension :migration
   
