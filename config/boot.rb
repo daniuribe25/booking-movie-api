@@ -2,6 +2,10 @@
 
 require 'rubygems'
 require 'bundler/setup'
+require 'dotenv/load'
+require 'sequel'
+
+Sequel::Model.db = Sequel.connect(ENV['DATABASE_URL'])
 
 Bundler.require :default, ENV['RACK_ENV']
 
@@ -22,5 +26,9 @@ Dir[File.expand_path('../api/entities/*.rb', __dir__)].sort.each do |entity|
 end
 
 Dir[File.expand_path('../api/endpoints/*.rb', __dir__)].sort.each do |endpoint|
+  require endpoint
+end
+
+Dir[File.expand_path('../lib/services/*.rb', __dir__)].sort.each do |endpoint|
   require endpoint
 end
