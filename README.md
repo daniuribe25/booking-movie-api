@@ -1,17 +1,3 @@
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
-
-- [adept it to your needs](#adept-it-to-your-needs)
-  - [Your awesome API](#your-awesome-api)
-  - [Usage](#usage)
-  - [Rake Tasks](#rake-tasks)
-  - [Docker](#docker)
-  - [Contributing](#contributing)
-  - [License](#license)
-
-<!-- /TOC -->
-
-# adept it to your needs
-
 ## Booking Movies API
 
 An awesome API used to create movies and book specific dater for each movie.
@@ -23,10 +9,42 @@ To run it locally you will need the last version of Ruby, then follow these step
 
 - [Get Project](#get)
 - [Setup](#setup)
+- [Usage](#usage)
 - [Test](#test)
 - [Run](#run)
 - [Update](#update)
 - [Stop](#stop)
+
+## Create Movies
+
+post [http://localhost:port/api/v1/movies](http://localhost:9292/doc)
+{
+  "name": String,
+  "image_url": String,
+  "dates": [String]
+}
+
+## Get Movies By Week Day
+
+get [http://localhost:port/api/v1/movies?week_day=](http://localhost:9292/api/v1/movies?week_day=)
+
+week_day must be a number from 0 being Sunday to 6 being Saturday
+
+## Create Booking
+
+post [http://localhost:port/api/v1/bookings](http://localhost:9292/api/v1/bookings)
+{
+  "movie_id": Number,
+  "date": String Date, // "yyyy-mm-dd"
+  "id_user": String
+}
+
+## Get Bookings
+
+get [http://localhost:port/api/v1/bookings?from=&to=](http://localhost:9292/api/v1/bookings?from=&to=)
+
+from= String Date "yyyy-mm-dd"
+to= String Date "yyyy-mm-dd"
 
 #### `Get Project`
 
