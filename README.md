@@ -5,16 +5,6 @@ It is built with Grape Gem to make it easier to implement api routing and and in
 
 ## Usage
 
-To run it locally you will need the last version of Ruby, then follow these steps:
-
-- [Get Project](#get)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Test](#test)
-- [Run](#run)
-- [Update](#update)
-- [Stop](#stop)
-
 ## Create Movies
 
 post [http://localhost:port/api/v1/movies](http://localhost:9292/doc)
@@ -45,6 +35,8 @@ get [http://localhost:port/api/v1/bookings?from=&to=](http://localhost:9292/api/
 
 from= String Date "yyyy-mm-dd"
 to= String Date "yyyy-mm-dd"
+
+To run it locally you will need the last version of Ruby, then follow these steps:
 
 #### `Get Project`
 
