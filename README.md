@@ -30,6 +30,9 @@ All following commands can and should be adapted/replaced to your needs.
 #### `Setup`
 
 ```
+CREATE USER bookingmovies WITH PASSWORD 'Paxwork1!';
+CREATE DATABASE booking_movies WITH ENCODING 'UTF8';
+GRANT ALL PRIVILEGES ON DATABASE booking_movies TO bookingmovies
 $ ./script/setup
 ```
 

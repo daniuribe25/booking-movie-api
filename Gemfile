@@ -7,6 +7,7 @@ gem 'thin'
 
 gem 'rack'
 gem 'rack-cors'
+gem 'pg', '~> 0.18.4'
 
 # API stuff
 gem 'grape'
@@ -23,4 +24,5 @@ group :development, :test do
   gem 'rubocop', '~> 0.77'
 end
 
+gem "sequel"
 gem "byebug", "~> 11.1", :groups => [:development, :test]

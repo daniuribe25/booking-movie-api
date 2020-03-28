@@ -1,40 +1,32 @@
 # frozen_string_literal: true
+require 'models'
 
 module BookingMovies
   module Services
     class MoviesService
-      
-      @@days_of_week = []
+      include Models
 
-      def get_all_by_dates(day_of_week)
-        if !day_of_week.blank? && [0..7].include? day_of_week.to_i
-          movies = [{
-            name: 'Movie 1',
-            description: 'Description 1',
-            image_url: 'http1',
-            show_dates: [Date.today, Date.today, Date.today]
-          },
-          {
-            name: 'Movie 1',
-            description: 'Description 1',
-            image_url: 'http1',
-            show_dates: [Date.today, Date.today, Date.today]
-          },
-          {
-            name: 'Movie 1',
-            description: 'Description 1',
-            image_url: 'http1',
-            show_dates: [Date.today, Date.today, Date.today]
-          }]
-          movies.filter {|m| m[:show_dates].any? {|sd| sd.wday === day_of_week.to_i }}
-        else
-          
+      def get_all_by_week_day(week_day)
+        begin
+          MovieDate.where(week_day: week_day).map{|md| md.values}
+        rescue
+          ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
         end
       end
 
-      def save_movie
-
+      def create_movie(movie)
+        begin
+          persisted_movie = Movie.create(name: movie[:name], image_url: movie[:image_url])
+          movie[:dates].each do |date|
+            week_day = (Date.parse date).wday
+            MovieDate.create(date: date, movie_id: persisted_movie.id, week_day: week_day)
+          end
+          { movie: persisted_movie.values }
+        rescue
+          ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
+        end
       end
+
     end
   end
 end
