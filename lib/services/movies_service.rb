@@ -8,7 +8,7 @@ module BookingMovies
 
       def get_all_by_week_day(week_day)
         begin
-          MovieDate.where(week_day: week_day).map{|md| md.values}
+          { code: 200, movies: MovieDate.where(week_day: week_day).map{|md| md.values} }
         rescue
           ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
         end
@@ -21,7 +21,7 @@ module BookingMovies
             week_day = (Date.parse date).wday
             MovieDate.create(date: date, movie_id: persisted_movie.id, week_day: week_day)
           end
-          { movie: persisted_movie.values }
+          { code: 200, movie: persisted_movie.values }
         rescue
           ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
         end

@@ -5,7 +5,7 @@ It is built with Grape Gem to make it easier to implement api routing and and in
 
 ## Usage
 
-## Create Movies
+#### Create Movies
 
 post [http://localhost:port/api/v1/movies](http://localhost:9292/doc)
 {
@@ -14,13 +14,37 @@ post [http://localhost:port/api/v1/movies](http://localhost:9292/doc)
   "dates": [String]
 }
 
-## Get Movies By Week Day
+Response success example: {
+  code: 200, booking: {
+    id: Number
+    name: String
+    image_url: String
+  }
+}
+
+Response error example: {
+  code: (500), message: String
+}
+
+#### Get Movies By Week Day
 
 get [http://localhost:port/api/v1/movies?week_day=](http://localhost:9292/api/v1/movies?week_day=)
 
 week_day must be a number from 0 being Sunday to 6 being Saturday
 
-## Create Booking
+Response success example: {
+  code: 200, movies: [{
+    id: Number,
+    name: String,
+    image_url: String
+  }]
+}
+
+Response error example: {
+  code: 500, message: String
+}
+
+#### Create Booking
 
 post [http://localhost:port/api/v1/bookings](http://localhost:9292/api/v1/bookings)
 {
@@ -29,16 +53,43 @@ post [http://localhost:port/api/v1/bookings](http://localhost:9292/api/v1/bookin
   "id_user": String
 }
 
-## Get Bookings
+Response success example: {
+  code: 200, booking: {
+    id: Number,
+    movie_date_id: Number,
+    id_user: Number
+  }
+}
+
+Response error example: {
+  code: (500| 404| 403), message: String
+}
+
+
+#### Get Bookings
 
 get [http://localhost:port/api/v1/bookings?from=&to=](http://localhost:9292/api/v1/bookings?from=&to=)
 
 from= String Date "yyyy-mm-dd"
 to= String Date "yyyy-mm-dd"
 
+Response success example: {
+  code: 200, bookings: [{
+    booking_id: Number,
+    movie_id: Number,
+    movie_name: String,
+    booking_date: Date,
+    id_user: String
+  }]
+}
+
+Response error example: {
+  code: 500, message: String
+}
+
 To run it locally you will need the last version of Ruby, then follow these steps:
 
-#### `Get Project`
+## `Get Project`
 
 First clone the project and access the folder
 ```
@@ -59,7 +110,8 @@ Create a new PG Database
 CREATE USER bookingmovies WITH PASSWORD 'Paxwork1!';
 CREATE DATABASE booking_movies WITH ENCODING 'UTF8';
 GRANT ALL PRIVILEGES ON DATABASE booking_movies TO bookingmovies
-$ ./script/setup
+CREATE DATABASE booking_movies_test WITH ENCODING 'UTF8';
+GRANT ALL PRIVILEGES ON DATABASE booking_movies_test TO bookingmovies
 ```
 
 Migrate Database by running

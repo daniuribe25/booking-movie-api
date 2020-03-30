@@ -34,7 +34,7 @@ module BookingMovies
               }
             end
           end
-          bookings
+          { code: 200, bookings: bookings }
         rescue
           ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
         end
@@ -50,7 +50,7 @@ module BookingMovies
           return ApiError.new({ code: 403, message: "No more quotas for this movie on #{booking[:date].strftime("%Y-%m-%d")}" }) if movie_date.bookings.count === @@max_bookings_per_movie_date
           # create booking
           persisted_booking = Booking.create(movie_date_id: movie_date.id, id_user: booking[:id_user])
-          { booking: persisted_booking.values }
+          { code: 200, booking: persisted_booking.values }
         rescue
           ApiError.new({ code: 500, message: "Error - please try again or contact the administrator" })
         end
